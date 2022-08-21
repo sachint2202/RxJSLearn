@@ -1,1 +1,60 @@
-<p>basics works!</p>
+<div class="h2">Back to the origin...</div>
+<div class="row m-2">
+    <div class="col d-grid">
+        <button type="button" (click)="callTabChange('Promise')" 
+        class="btn btn-outline-secondary">Promise</button>
+    </div>
+    <div class="col d-grid">
+        <button type="button"  (click)="callTabChange('AsyncAwait')" 
+         class="btn btn-outline-secondary">Async/ Await</button>
+    </div>
+    <div class="col d-grid">
+        <button type="button"  (click)="callTabChange('Fetch')" 
+         class="btn btn-outline-secondary ">Fetch</button>
+    </div>
+</div>
+<div class="row border m-2">
+    <ng-container [ngSwitch]="tabToDisplay">
+        <div *ngSwitchCase="'Promise'">
+            <ng-container *ngTemplateOutlet="Promise"></ng-container>
+        </div>
+        <div *ngSwitchCase="'AsyncAwait'">
+            <ng-container *ngTemplateOutlet="AsyncAwait"></ng-container>
+        </div>
+        <div *ngSwitchCase="'Fetch'">
+            <ng-container *ngTemplateOutlet="Fetch"></ng-container>
+        </div>
+        <div *ngSwitchDefault>output2</div>
+    </ng-container>
+</div>
+<ng-template #Promise>
+    <div class="fw-normal text-wrap">Promise to be learnt...</div>
+    
+      <div class="row m-1">
+        <div class="col border">
+            <div class="card my-1">
+                <div class="card-body bg-dark text-light">
+                  {{codeContent}}
+                </div>
+              </div>
+        </div>
+        <div class="col border">
+            <div class="col ">
+                <div class="card my-1">
+                    <div class="card-body bg-light text-dark">
+                        {{codeResult}}
+                    </div>
+                  </div>
+            </div>
+        
+
+        </div>
+      </div>
+</ng-template>
+<ng-template #AsyncAwait>
+    <div class="fw-normal text-wrap">Async/ Await to be learnt...</div>
+</ng-template>
+<ng-template #Fetch>
+    <div class="fw-normal text-wrap">Fetch to be learnt...</div>
+</ng-template>
+
