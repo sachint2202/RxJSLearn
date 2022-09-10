@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="h4">Daily Chores</div>
+    <div class="tableContent">
+        <div class="row" *ngFor="let toDo of ToDoData">
+            <div class="col-8">{{toDo.title}}</div>
+            <div class="col-4"><input type="checkbox" [(ngModel)]="toDo.completed"></div>
+        </div>
+    </div>
+</div>
+
