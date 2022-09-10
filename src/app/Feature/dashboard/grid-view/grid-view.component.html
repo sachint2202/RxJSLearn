@@ -4,7 +4,7 @@
             <div class="h4">Daily Chores</div>
         </div>
         <div class="col-md-4 p-2">
-            <button class="btn btn-primary w-100" (click)="addAChore=true">Add a Chore</button>
+            <button class="btn btn-outline-primary w-100" (click)="addAChore=true">Add a Chore</button>
         </div>
     </div>
     <div *ngIf="addAChore" class="form-group mt-2 mb-2">
@@ -15,24 +15,32 @@
         
             </div>
             <div class="col-md-2 p-2">
-                <button class="btn btn-success form-control" 
+                <button class="btn btn-outline-success form-control" 
                 (click)="AddToList()">Add to List</button>
             </div>
             <div class="col-md-2 p-2">
-                <button class="btn btn-danger form-control" 
+                <button class="btn btn-outline-danger form-control" 
                 (click)="addAChore=false">Cancel</button>
             </div>
         </div>
             </div>
 
-    <div class="tableContent">
+    <div class="tableContent m-2">
         <div *ngFor="let toDo of ToDoData">
             <div class="row border pt-1 pb-1">
-                <div class="col-md-2">
+                <div class="col-md-2 p-2" *ngIf="!toDo.completed">
+                    <button class="btn btn-outline-success form-control" 
+                    (click)="toDo.completed=true;UpdateToDo(toDo)">Mark as Done</button>
+                </div>
+                <div class="col-md-2 p-2">
+                    <button class="btn btn-outline-danger form-control" 
+                    (click)="DeleteToDo(toDo)">Delete from List</button>
+                </div>
+                <!-- <div class="col-md-2">
                     <input type="checkbox" [(ngModel)]="toDo.completed"
                     (change)="UpdateToDo(toDo)">
-                </div>
-                <div class="col-md-10">
+                </div> -->
+                <div class="col-md p-2">
                     {{toDo.title}}
                 </div>
             </div>

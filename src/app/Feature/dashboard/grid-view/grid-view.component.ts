@@ -32,7 +32,7 @@ export class GridViewComponent implements OnInit {
         console.log('New chore added successfully')
         this.newTitle="";
         this.addAChore=false;
-        this.ToDoData.push(val);
+        this.refreshToDoList();
       },
       
     )
@@ -48,15 +48,34 @@ export class GridViewComponent implements OnInit {
           return;
         }
         alert('Updated successfully');
-        this.ToDoData.map(x => {if(x.id == val.id)x=val})
+        this.refreshToDoList();
       }
     )
 
   }
 
+  //Delete a ToDo
+  DeleteToDo(existingToDo:ToDoList){
+    this.crud.deleteAToDo(existingToDo)
+    .subscribe(
+      (val) => {
+        if(!val){
+          alert('Please try to delete again');
+          return;
+        }
+        alert('Deleted successfully');
+        this.refreshToDoList();
+      }
+    )
+  }
+
+  refreshToDoList(){
+    this.crud.getFakeData().subscribe(x => this.ToDoData = x);
+  }
+
   //Get Data Initially From Fake APIs
   ngOnInit(): void {
-   this.crud.getFakeData().subscribe(x => this.ToDoData = x);
+   this.refreshToDoList();
   }
 
 }
