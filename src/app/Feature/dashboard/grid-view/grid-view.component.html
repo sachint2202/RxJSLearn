@@ -1,9 +1,45 @@
-<div class="container">
-    <div class="h4">Daily Chores</div>
+<div class="container m-2 p-2">
+    <div class="row">
+        <div class="col-md-8 p-2">
+            <div class="h4">Daily Chores</div>
+        </div>
+        <div class="col-md-4 p-2">
+            <button class="btn btn-primary w-100" (click)="addAChore=true">Add a Chore</button>
+        </div>
+    </div>
+    <div *ngIf="addAChore" class="form-group mt-2 mb-2">
+        <div class="row">
+            <div class="col-md-8 p-2">
+                <input type="text" class="form-control" name="Title"
+                placeholder="Enter title..." [(ngModel)]="newTitle" id="Title">
+        
+            </div>
+            <div class="col-md-2 p-2">
+                <button class="btn btn-success form-control" 
+                (click)="AddToList()">Add to List</button>
+            </div>
+            <div class="col-md-2 p-2">
+                <button class="btn btn-danger form-control" 
+                (click)="addAChore=false">Cancel</button>
+            </div>
+        </div>
+            </div>
+
     <div class="tableContent">
-        <div class="row" *ngFor="let toDo of ToDoData">
-            <div class="col-8">{{toDo.title}}</div>
-            <div class="col-4"><input type="checkbox" [(ngModel)]="toDo.completed"></div>
+        <div *ngFor="let toDo of ToDoData">
+            <div class="row border pt-1 pb-1">
+                <div class="col-md-2">
+                    <input type="checkbox" [(ngModel)]="toDo.completed"
+                    (change)="UpdateToDo(toDo)">
+                </div>
+                <div class="col-md-10">
+                    {{toDo.title}}
+                </div>
+            </div>
+           
+        </div>
+        <div *ngIf="!ToDoData.length">
+            List is empty!
         </div>
     </div>
 </div>
